@@ -2,7 +2,7 @@
 {
     Properties
     {
-        _PointSize("Point size", Float) = 5.0
+        _PointSize("Point size", Float) = 10.0
     }
 
     SubShader
@@ -17,7 +17,7 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            uniform float _PointSize = 50;
+            uniform float _PointSize;
 
             struct appdata
             {

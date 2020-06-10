@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 
 public class PointMesh : MonoBehaviour
 {
+    public int PointSize = 10;
     private List<Vector3> mVertices;
     private List<Color> mColors;
     List<int> mIndices;
@@ -28,7 +29,7 @@ public class PointMesh : MonoBehaviour
     {
         mMesh.SetVertices(mVertices);
         mMesh.SetColors(mColors);
-        mMesh.SetIndices(mIndices, MeshTopology.Points, 0);
+        mMesh.SetTriangles(mIndices, 0);
         mMesh.RecalculateBounds();
     }
 
@@ -43,8 +44,14 @@ public class PointMesh : MonoBehaviour
     public int Add(Vector3 v, Color c)
     {
         int index = mIndices.Count;
-        mVertices.Add(v);
+        mVertices.Add(new Vector3(v.x, v.y + PointSize, 0));
+        mVertices.Add(new Vector3(v.x + PointSize, v.y - PointSize, 0));
+        mVertices.Add(new Vector3(v.x - PointSize, v.y - PointSize, 0));
         mIndices.Add(mIndices.Count);
+        mIndices.Add(mIndices.Count);
+        mIndices.Add(mIndices.Count);
+        mColors.Add(c);
+        mColors.Add(c);
         mColors.Add(c);
         return index;
     }

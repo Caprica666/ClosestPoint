@@ -41,6 +41,7 @@ public class ClosestPoint : MonoBehaviour
         else if (Step)
         {
             Step = false;
+            StartCoroutine(FindClosestPair());
         }
     }
 
@@ -54,6 +55,12 @@ public class ClosestPoint : MonoBehaviour
         line.transform.SetParent(gameObject.transform, false);
         yield return new WaitForEndOfFrame();
         yield return StartCoroutine(mHull.MakeHull(mPointList.Points, c));
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        mHull.RemoveHullPoints(mPointList.Points);
+        yield return new WaitForEndOfFrame();
+        mPointList.Display(true);
     }
 
     IEnumerator FindClosestPair()

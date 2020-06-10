@@ -8,7 +8,7 @@ public class PointList
     private List<Vector3> mPoints;
     private PointMesh mPointsToRender;
     private static readonly float EPSILON = 1e-5f;
-    private static readonly float SCALE = 0.00001f;
+    private static readonly float SCALE = 0.001f;
 
     public List<Vector3> Points
     {   get { return mPoints; } }
@@ -92,7 +92,7 @@ public class PointList
             string[] parts = line.Split('\t');
             float x = float.Parse(parts[0]);
             float y = float.Parse(parts[1]);
-            Add(new Vector3(x / SCALE, y / SCALE, 0));
+            Add(new Vector3(x * SCALE, y * SCALE, 0));
         }
         SortByX();
     }
